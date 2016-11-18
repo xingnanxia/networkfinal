@@ -39,8 +39,6 @@ function getPageData($pageName){
 		$desc = $row -> page_desc;
 	}
 	
-	
-	
 	//send back to javascript 
 	$html = '<h1>' . $title . '</h1>';
 	$html .= '<p>' . $desc . '</p>';

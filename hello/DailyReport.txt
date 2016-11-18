@@ -1,0 +1,20 @@
+Nov, 17, 2016 (Done by Natalie)
+
+1) Install MAMP. 
+2) Follow https://www.youtube.com/watch?v=TPHQy22-2FE video to create the “hello” project. 
+3) Modify the “hello” project and create the “search’ project. 
+
+Hello Project: 
+
+1) html page has the layout of the web page. And it links to both the jquery library and the project’s javascript file. 
+2) lib folder contains the jQuery library .js file.
+3) js folder contains the App.js file. The getData() function takes in a string and post it to the php file. After getting the data back from the php file, it display it on html content. 
+4) php folder contains the script.php file. Once it get the request from .js, it connects to the database and query the data. Then, it send the result back to .js. 
+
+Search Project: 
+I created a new little database with school name, school ranking and school description. I modify the code in Hello project so that it could display school information instead. 
+
+Todo: 
+1) Create a dropDown menu from the database to populate the school names. (let the users choose from the menu).
+2) Pass the user’s selection from html -> .js -> php -> database to display school information on demand. 
+3) Enable scoring for each school. (dynamically calculate the average).
