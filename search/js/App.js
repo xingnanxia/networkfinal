@@ -29,6 +29,7 @@ function getData(collegeName){
 
 $(document).ready(function(){
 
+    
 	getData("AllUniveristies");
 
 });

@@ -83,6 +83,7 @@
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
 </style>
 
 </head>
@@ -110,8 +111,14 @@ function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
+/* When the user clicks on the school button,
+toggle between hiding and showing the dropdown content */
 function ClickSchool() {
-  alert("you clicked somewhere");
+  document.getElementById("myDropdown").classList.toggle("show");
+  var id=arguments[0];
+  disPlayCollege(id);
+
+
 }
 
 
@@ -131,12 +138,51 @@ function filterFunction() {
         }
     }
 }
+
+
+function disPlayCollege(id){
+
+    //send the name over to the php file.
+    //This is the jquery post method
+    var posting = $.post("php/script.php", {
+    
+        myID: id
+    
+    });
+    
+    //what will happen when the posting is done.
+    posting.done(function(data){
+        
+        //jQuery 
+        $("#content1").html(data);
+
+    
+    });
+
+    //what happens if it fails.
+    posting.fail(function(){
+    
+        alert("failed");
+    
+    });
+}
+
+$(document).ready(function(){
+
+    
+    disPlayCollege(id);
+
+});
+
 </script>
 
 
 <script src = "lib/jquery-3.1.1.min.js"></script>
- <script src = "js/App.js"></script>
+ 
+<script src = "js/App.js"></script>
 
+<div id = "content1">
+ </div>
 
 </body>
 </html>

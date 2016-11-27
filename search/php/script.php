@@ -7,6 +7,11 @@ if(isset($_POST['name'])){
 	getPageData($_POST['name']);
 }
 
+if(isset($_POST['myID'])){
+
+	getCollegeData($_POST['myID']);
+}
+
 
 function connectToDB(){
 
@@ -26,7 +31,35 @@ function connectToDB(){
 	
 	return $mysqliLink;
 }
+function getCollegeData($id){
 
+	$mysqliLink = connectToDB();
+	
+	//query to get the data back for us
+	//data back stored in var query
+	$query = $mysqliLink->query("SELECT * FROM college_rating WHERE p_id=$id");
+	
+	//two variables to store the back data
+	$title = "";
+	$desc = "";
+
+
+	if ($row = $query->fetch_object()){
+	
+		$title = $row -> name;
+		$desc= $row -> description;
+
+	}
+
+	$html='<h2>'.$title.'</h2>';
+	$html.='<p>'.$desc.'</p>';
+	
+	//send back to javascript 
+	
+	
+	
+	echo $html;
+}
 
 //all the variables in php start with a dollar sign
 function getPageData($pageName){
@@ -35,7 +68,7 @@ function getPageData($pageName){
 	
 	//query to get the data back for us
 	//data back stored in var query
-	$query = $mysqliLink->query("SELECT * FROM college_rating ");
+	$query = $mysqliLink->query("SELECT * FROM college_rating");
 	
 	//two variables to store the back data
 	$title = "";
@@ -46,7 +79,8 @@ function getPageData($pageName){
 	while ($row = $query->fetch_object()){
 	
 		$title = $row -> name;
-		$html .= ' <li onclick="ClickSchool(3)"><a>' . $title . '</a></li> ';
+		$id= $row -> p_id;
+		$html .= ' <li onclick="ClickSchool('.$id.')"><a>' . $title . '</a></li> ';
 
 	}
 	
