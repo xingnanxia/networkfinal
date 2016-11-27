@@ -35,23 +35,28 @@ function getPageData($pageName){
 	
 	//query to get the data back for us
 	//data back stored in var query
-	$query = $mysqliLink->query("SELECT * FROM college_rating WHERE name = '$pageName'");
+	$query = $mysqliLink->query("SELECT * FROM college_rating ");
 	
 	//two variables to store the back data
 	$title = "";
-	$desc = "";	
+	$html = "";
+
+
+	//how can you 
+	while ($row = $query->fetch_object()){
 	
-	if($row = $query->fetch_object()){
-	
-		$desc = $row -> description;
+		$title = $row -> name;
+		$html .= ' <li onclick="ClickSchool(3)"><a>' . $title . '</a></li> ';
+
 	}
 	
 	//send back to javascript 
-	$html = '<h1>' . $pageName . '</h1>';
-	$html .= '<p>' . $desc . '</p>';
+	
+	
 	
 	echo $html;
 }
+
 
 ?>
 

@@ -13,8 +13,10 @@ function connectToDB(){
 	
 	//check the connection 
 	if(mysqli_connect_errno()){
-
+        echo "not connected"; 
 		exit();
+	}else {
+		echo "connected"; 
 	}
 	
 	return $mysqliLink;
@@ -46,10 +48,6 @@ function getPageData($pageName){
 	echo $html;
 
 }
-
-
-
-
 
 
 

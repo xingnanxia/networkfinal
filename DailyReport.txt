@@ -19,3 +19,5 @@ Todo:
 2) Pass the user’s selection from html -> .js -> php -> database to display school information on demand. 
 3) Enable scoring for each school. (dynamically calculate the average).
 4) Move the server & database from localhost to cloud.
+
+Nov 20th 2016 (Lily)

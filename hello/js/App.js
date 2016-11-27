@@ -29,6 +29,6 @@ function getData(pageName){
 //When the web page is loaded. 
 $(document).ready(function(){
 
-	getData("about");
+	getData("home");
 
 });

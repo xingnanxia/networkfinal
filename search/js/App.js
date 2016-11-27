@@ -15,6 +15,7 @@ function getData(collegeName){
 		
 		//jQuery 
 		$("#content").html(data);
+
 	
 	});
 
@@ -28,6 +29,6 @@ function getData(collegeName){
 
 $(document).ready(function(){
 
-	getData("Harvard University");
+	getData("AllUniveristies");
 
 });
