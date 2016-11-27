@@ -19,23 +19,23 @@ Search Project:
 
 2. Created a dropdown menu that displays all the school names in the database
 
-3. enabled users to search for schools in the dropdown memu
+3. enabled users to search for schools in the serach field of the dropdown memu
 
-4. wrote methods that displays school title and school description when the user clicks a school on the drop down menu
+4. wrote methods that displays school title and school description when the user clicks a school on the dropdown menu
 
 Todo: 
 
 1) create school aspect buttons: engineering, computer science, math and finance, other(workload, professors, research),
-after graduation, professional support, food(campus and surrounding area), financial aid and scholarships,campus  inclusivity, 
+after graduation, professional support, food(campus and surrounding area), financial aid and scholarships,campus inclusivity, 
 overall experience
 
 2) enable users to review the ratings and reviews of different aspects of a certain school
 
-3) enable users to rate and submit new reviews
+3) enable users to rate schools and submit new reviews
 
 4) add the information of top 50 schools to the database
 
-5) work on easthetics of the website
+5) work on website layout
 
 6) Move the server & database from localhost to cloud.
 
