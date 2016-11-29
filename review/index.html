@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset = "UTF-8">
+<title> Rate my Colleges </title>
+
+
+<div class = "review">
+
+	<button onclick = "showReviewBox()" class = "reviews"> Review </button> 
+	
+	
+	<!-- defines a form for the user to fill out and submit -->
+	<form action = "php/action_page.php" method = "post">
+		Country of Origin: <br>
+		<input type="text" name="country"><br>
+		
+		Please select your year in college: <br>
+		<select name = "year">
+  			<option value="freshman">Freshman</option>
+  			<option value="sophomore">Sophomore</option>
+  			<option value="junior">Junior</option>
+  			<option value="senior">Senior</option>
+  			<option value = "graduate student">Graduate Student</option>
+  			<option value = "alumnus">Alumnus</option>	
+		</select>
+	
+		<div>
+		Please write your review here: <br>
+		<div id = "myReviewBox" class = "review-content">
+		
+		<textarea name="ReviewText" cols="40" rows="5"></textarea>
+		</div>
+		</div>
+		
+		<input type = "submit" value = "Submit">
+
+	</form>
+	
+</div>
+
+
+<script>
+
+
+</script>
+</body>
+</html>
