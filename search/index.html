@@ -115,9 +115,11 @@ function myFunction() {
 toggle between hiding and showing the dropdown content */
 function ClickSchool() {
   document.getElementById("myDropdown").classList.toggle("show");
+  document.getElementById("fields").classList.add("show");
+
   var id=arguments[0];
   disPlayCollege(id);
-
+  
 
 }
 
@@ -156,6 +158,7 @@ function disPlayCollege(id){
         //jQuery 
         $("#content1").html(data);
 
+
     
     });
 
@@ -167,12 +170,6 @@ function disPlayCollege(id){
     });
 }
 
-$(document).ready(function(){
-
-    
-    disPlayCollege(id);
-
-});
 
 </script>
 
@@ -183,6 +180,107 @@ $(document).ready(function(){
 
 <div id = "content1">
  </div>
+ 
+ <style>
+
+
+.field{
+background-color: #4CAF50;
+color: white;
+padding: 8px 20px;
+font-size: 14px;
+ border: 2px solid green; 
+cursor: pointer;
+float:left;
+}
+
+.buttons,.review{
+display:none;
+}
+
+.field:hover, .field:focus {
+    background-color: purple;
+}
+
+.show {display:block;}
+
+ </style>
+<div id = "fields" class="buttons">
+<button onclick="showReviewBox(this.id)" class="field" id="Engineering">Engineering</button>
+<button onclick="showReviewBox(this.id)" class="field" id="Computer Science">Computer Science</button> 
+<button onclick="showReviewBox(this.id)" class="field" id="Math and Finance">Math and Finance</button> 
+<button onclick="showReviewBox(this.id)" class="field" id="After Graduation">After Graduation</button> 
+<button onclick="showReviewBox(this.id)" class="field" id="Professional Support">Professional Support</button>
+<button onclick="showReviewBox(this.id)" class="field" id="Food">Food</button> 
+<button onclick="showReviewBox(this.id)" class="field" id="Financial Aid and Scholarships">Financial Aid and Scholarships</button>
+<button onclick="showReviewBox(this.id)" class="field" id="Campus Inclusivity">Campus Inclusivity</button>
+<button onclick="showReviewBox(this.id)" class="field" id="Overall Experience">Overall Experience</button>
+ </div>
+
+<br>
+</br>
+<br>
+</br>
+<br>
+
+<script>
+var SchoolName;
+
+
+function showReviewBox(){
+   document.getElementById("reviews").classList.add("show");
+ 
+   var fieldName=arguments[0];
+      //displays the field that the student is reviewing for 
+    $("#myField").html("<input type='hidden' name='field' value='"+fieldName+"'>");
+
+        //this line displays the field that the user is doing..
+     $("#ReviewingField").html("<p>This is the field that you are reviewing: "+fieldName+"</p>");
+}
+
+function addSchool(){
+}
+</script>
+
+<div id="ReviewingField">
+</div>
+
+
+
+ <div class = "review", id = "reviews" >
+     
+    <!-- defines a form for the user to fill out and submit -->
+    <form action = "php/action_page.php" method = "post">
+        Country of Origin: <br>
+        <input type="text" name="country"><br>
+
+        
+        Please select your year in college: <br>
+        <select name = "year">
+            <option value="freshman">Freshman</option>
+            <option value="sophomore">Sophomore</option>
+            <option value="junior">Junior</option>
+            <option value="senior">Senior</option>
+            <option value = "graduate student">Graduate Student</option>
+            <option value = "alumnus">Alumnus</option>  
+        </select>
+
+    
+        <div>
+        Please write your review here: <br>
+        
+        <textarea name="ReviewText" cols="40" rows="5"></textarea>
+         <div id="myField">
+        </div>
+         <div id="mySchool">
+        </div>
+        
+        <input type = "submit" value = "Submit">
+
+    </form>
+    
+</div>
+
 
 </body>
 </html>
