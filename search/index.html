@@ -140,7 +140,7 @@ function filterFunction() {
         }
     }
 }
-
+var school;
 
 function disPlayCollege(id){
 
@@ -158,7 +158,7 @@ function disPlayCollege(id){
         //jQuery 
         //$("#content1").html(data);
       var res = data.split("*");
-      var school=res[0];
+      school=res[0];
       var description=res[1];
 
       //display the school information 
@@ -166,8 +166,6 @@ function disPlayCollege(id){
       
       //send the school infromation to the database... 
       $("#mySchool").html("<input type='hidden' name='school' value='"+school+"'>");
-
-
 
 
     
@@ -235,26 +233,59 @@ display:none;
 <br>
 
 <script>
-var SchoolName;
-
-
+//this method is called when a field button is clicked
 function showReviewBox(){
+
+
    document.getElementById("reviews").classList.add("show");
- 
+
+   
    var fieldName=arguments[0];
+
+ 
       //this line sends the field the student is reviewing for to the database
     $("#myField").html("<input type='hidden' name='field' value='"+fieldName+"'>");
 
         //this line displays the field that the user is doing..
      $("#ReviewingField").html("<p>This is the field that you are reviewing: "+fieldName+"</p>");
+
+      disPlayReviews(fieldName,window.school);
 }
 
-function addSchool(){
-}
+
+//this function displays the reviews of a certain field of a certain field
+
+
 </script>
+
+<script>
+
+function disPlayReviews(fieldName, schoolName){
+  
+
+ var posting = $.post("php/script.php", {
+  
+    field: fieldName,
+    school: schoolName
+  
+  });
+
+ posting.done(function(data){
+    
+    $("#myReviews").html(data);
+  
+  });
+
+}
+
+</script>
+
+<div id="myReviews">
+</div>
 
 <div id="ReviewingField">
 </div>
+
 
 
 

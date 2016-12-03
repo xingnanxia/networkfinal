@@ -12,6 +12,12 @@ if(isset($_POST['myID'])){
 	getCollegeData($_POST['myID']);
 }
 
+if(isset($_POST['field']) and isset($_POST['school'])){
+	getReviews($_POST['field'],$_POST['school']);
+}
+
+
+
 
 function connectToDB(){
 
@@ -91,6 +97,38 @@ function getPageData($pageName){
 	echo $html;
 }
 
+
+function getReviews($fieldName, $schoolName){
+
+	$mysqliLink = connectToDB();
+	
+	//query to get the data back for us
+	//data back stored in var query
+	$query = $mysqliLink->query("SELECT * FROM reviews WHERE school='$schoolName' and field='$fieldName'");
+	
+	//two variables to store the back data
+	$myCountry = "";
+	$myYear = "";
+	$myReview = "";
+	$html = "";
+
+	//how can you 
+	while ($row = $query->fetch_object()){
+	
+		$myCountry= $row -> country;
+
+		$myYear= $row -> year;
+		$myReview=$row -> review;
+		$html .= '<p> Original Country: '.$myCountry.'  Year in school: '.$myYear.'</p><br>';
+		$html .='<p> Review: '.$myReview.'</p><br>';
+
+	}
+	
+	//send back to javascript 
+	
+	
+	echo $html;
+}
 
 ?>
 

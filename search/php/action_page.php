@@ -33,7 +33,7 @@ function storeForm($country, $year, $review, $field, $school){
 	$conn = connectToDB();
 	
 	$sql = "INSERT INTO `reviews`(`country`, `year`, `review`,`field`,`school`) VALUES ('$country','$year','$review','$field','$school')";
-			
+		
 	if ($conn->query($sql) === TRUE) {
     	echo "New record created successfully";
 	} else {
