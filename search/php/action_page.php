@@ -3,9 +3,9 @@
 <?php
 
 //store country 
-if(isset($_POST['country']) and isset($_POST['year']) and isset($_POST['ReviewText'])and isset($_POST['field'])){
+if(isset($_POST['country']) and isset($_POST['year']) and isset($_POST['ReviewText'])and isset($_POST['field'])and isset($_POST['school'])){
 
-	storeForm($_POST['country'], $_POST['year'],$_POST['ReviewText'],$_POST['field']);
+	storeForm($_POST['country'], $_POST['year'],$_POST['ReviewText'],$_POST['field'],$_POST['school']);
 	echo "form complete";
 }
 
@@ -28,11 +28,11 @@ function connectToDB(){
 	return $mysqliLink;
 }
 
-function storeForm($country, $year, $review, $field){
+function storeForm($country, $year, $review, $field, $school){
 
 	$conn = connectToDB();
 	
-	$sql = "INSERT INTO `Vanderbilt University`(`country`, `year`, `review`,`field`) VALUES ('$country','$year','$review','$field')";
+	$sql = "INSERT INTO `reviews`(`country`, `year`, `review`,`field`,`school`) VALUES ('$country','$year','$review','$field','$school')";
 			
 	if ($conn->query($sql) === TRUE) {
     	echo "New record created successfully";

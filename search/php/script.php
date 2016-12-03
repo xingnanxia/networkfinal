@@ -27,7 +27,7 @@ function connectToDB(){
 		exit();
 	}
 	
-	echo "connected";
+	//echo "connected";
 	
 	return $mysqliLink;
 }
@@ -58,7 +58,7 @@ function getCollegeData($id){
 	
 	
 	
-	echo $html;
+	echo $title."*".$desc;
 }
 
 //all the variables in php start with a dollar sign

@@ -156,7 +156,18 @@ function disPlayCollege(id){
     posting.done(function(data){
         
         //jQuery 
-        $("#content1").html(data);
+        //$("#content1").html(data);
+      var res = data.split("*");
+      var school=res[0];
+      var description=res[1];
+
+      //display the school information 
+      $("#content1").html("<h2>"+school+"</h2> <p>"+description+"</p>");
+      
+      //send the school infromation to the database... 
+      $("#mySchool").html("<input type='hidden' name='school' value='"+school+"'>");
+
+
 
 
     
@@ -231,7 +242,7 @@ function showReviewBox(){
    document.getElementById("reviews").classList.add("show");
  
    var fieldName=arguments[0];
-      //displays the field that the student is reviewing for 
+      //this line sends the field the student is reviewing for to the database
     $("#myField").html("<input type='hidden' name='field' value='"+fieldName+"'>");
 
         //this line displays the field that the user is doing..
