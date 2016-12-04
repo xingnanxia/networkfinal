@@ -5,8 +5,7 @@
 <meta charset = "UTF-8">
 <title> Rate my Colleges </title>
 
-
-
+<link rel="stylesheet" href="css/rating.min.css">
 <style>
 
 body{
@@ -55,7 +54,7 @@ color: #002b80;
 }
 
 /* review box and etc */
-#reviews,#ReviewingField{
+#reviews,#ReviewingField,#RatingField{
 color: #002b80;
 padding-left: 370px; 
 }
@@ -183,6 +182,7 @@ function filterFunction() {
         }
     }
 }
+
 var school;
 
 //this method displays the school information
@@ -291,14 +291,16 @@ display:none;
 
 <script>
 
+
 //this method is called when a field button is clicked
 function showReviewBox(){
 
    document.getElementById("reviews").classList.add("show");
 
+
    
    var fieldName=arguments[0];
-
+   
  
       //this line sends the field the student is reviewing for to the database
     $("#myField").html("<input type='hidden' name='field' value='"+fieldName+"'>");
@@ -307,6 +309,10 @@ function showReviewBox(){
      $("#ReviewingField").html("<p>You are reviewing for: "+fieldName+"</p>");
 
       disPlayReviews(fieldName,window.school);
+      
+      var OR = 0;
+      
+      getRating(1,test);        
 }
 
 
@@ -336,9 +342,112 @@ function disPlayReviews(fieldName, schoolName){
 </div>
 
 <!-- the field that the user is reviewing for-->
-  <div id="ReviewingField">
+  <div id="ReviewingField"> 
+
 </div>
 
+  <div id="RatingField">
+</div>
+
+<script src = "lib/jquery-3.1.1.min.js"></script>
+
+<script src="js/src/rating.js"></script>
+
+<script>
+  
+  function getRating(id, callback){
+
+
+    var posting = $.post("php/currentRating.php", {
+    
+        myID: id
+    
+    });
+    
+    //what will happen when the posting is done.
+    posting.done(function(mdata){
+       OR = mdata;
+       
+       callback();
+    
+    });
+
+    //what happens if it fails.
+    posting.fail(function(){
+    
+        alert("gat rating failed");
+    
+    });  
+    
+}
+   
+  
+  function test(){
+  
+  	(function() {
+
+    'use strict';
+
+    // SHOP ELEMENT
+    var shop = document.querySelector('#RatingField');
+
+    // DUMMY DATA
+    var data = [
+      {
+      	title: "Overall Rating",
+        description: "Click to submit your own rating!", 	
+        rating: OR
+      }
+    ];
+
+    // INITIALIZE
+    (function init() {
+      for (var i = 0; i < data.length; i++) {
+        addRatingWidget(buildShopItem(data[i]), data[i]);
+      }
+    })();
+
+    // BUILD SHOP ITEM
+    function buildShopItem(data) {
+      var shopItem = document.createElement('div');
+
+      var html = '<div class="c-shop-item__img"></div>' +
+        '<div class="c-shop-item__details">' +
+          '<h3 class="c-shop-item__title">' + data.title + '</h3>' +
+          '<p class="c-shop-item__description">' + data.description + '</p>' +
+          '<ul class="c-rating"></ul>' +
+        '</div>';
+
+      shopItem.classList.add('c-shop-item');
+      shopItem.innerHTML = html;
+      shop.appendChild(shopItem);
+
+      return shopItem;
+    }
+
+    // ADD RATING WIDGET
+    function addRatingWidget(shopItem, data) {
+      var ratingElement = shopItem.querySelector('.c-rating');
+      var currentRating = data.rating;
+      var maxRating = 5;
+      
+      //customize your callback function once the user chose a rating here.
+      var callback = function(rating) { 
+      	
+      	alert(rating); 
+      	
+      	updateRating(1,rating);
+      
+      };
+      var r = rating(ratingElement, currentRating, maxRating, callback);
+    }
+
+  })();
+
+  
+  }
+
+</script>
 
  <!-- the hidden iframe-->
 <style>
