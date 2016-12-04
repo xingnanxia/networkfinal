@@ -5,21 +5,26 @@
 <meta charset = "UTF-8">
 <title> Rate my Colleges </title>
 
-
 <style>
+
+body{
+  background-color: #e6fff9;
+
+}
 /* Dropdown Button */
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #99bbff;
     color: white;
     padding: 16px;
     font-size: 16px;
+    border-radius: 4px;
     border: none;
     cursor: pointer;
 }
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+    background-color: #6699ff;
 }
 
 #myUL {
@@ -31,15 +36,38 @@
 
 /* click on the button to open choose... */
 #myIntro{
-    color: #4CAF50; 
+    color: #002b80; 
      font-size: 20px;   
 }
 
 /* rate my colleges */
 #myTitle{
-  color: #4CAF50; 
-  font-size: 32px; 
+  color: #002b80; 
+  font-size: 40px;
+}
 
+/* college information */
+#content1{
+color: #002b80; 
+
+}
+
+/* review box and etc */
+#reviews,#ReviewingField{
+color: #002b80;
+padding-left: 370px; 
+}
+
+
+
+/* reviews display..the paragraphs... */
+#aReview{
+  color: #002b80;
+  border: 1px solid #99b3ff;
+  border-radius: 5px;
+  margin-left:250px;
+  margin-right:300px;
+  padding: 10px 10px 10px 20px;
 }
 
 /* my search input
@@ -54,16 +82,20 @@
     border: none;
 }
 
-/* The container <div> - needed to position the dropdown content */
+/* The container <div> - needed to position the dropdown content 
+ */
 .dropdown {
+    margin-left:550px;
     position: relative;
     display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
+/* Dropdown Content (Hidden by Default) 
+*/
 .dropdown-content {
     display: none;
     position: absolute;
+  
     background-color: #f6f6f6;
     min-width: 230px;
     overflow: auto;
@@ -89,9 +121,11 @@
 </head>
 
 <body>
-
-<h2 id="myTitle">Rate my colleges</h2>
-<p id="myIntro">Click on the button to open choose the college that you want to check out</p>
+   
+   <!-- The title, the intro and the colleges button-->
+<h2 id="myTitle" align="center"; >Rate My Colleges</h2>
+<p id="myIntro" align="center">Click the button below to choose your college</p>
+<br>
 
 <div class="dropdown">
 <button onclick="myFunction()" class="dropbtn">Colleges</button>
@@ -104,6 +138,10 @@
   </div>
 </div>
 
+<br>
+</br>
+
+
 <script>
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
@@ -112,18 +150,21 @@ function myFunction() {
 }
 
 /* When the user clicks on the school button,
-toggle between hiding and showing the dropdown content */
+toggle between hiding and showing the dropdown content
+and dispay the school information 
+ */
 function ClickSchool() {
   document.getElementById("myDropdown").classList.toggle("show");
   document.getElementById("fields").classList.add("show");
-
   var id=arguments[0];
   disPlayCollege(id);
   
 
 }
 
-
+/* 
+This method only displays school names that contain the user inputs
+ */
 function filterFunction() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("myInput");
@@ -131,7 +172,7 @@ function filterFunction() {
     div = document.getElementById("myDropdown");
     a = div.getElementsByTagName("a");
      
-    //only displays elements that contain the user inputs
+
     for (i = 0; i < a.length; i++) {
         if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
             a[i].style.display = "";
@@ -142,10 +183,10 @@ function filterFunction() {
 }
 var school;
 
+//this method displays the school information
 function disPlayCollege(id){
 
-    //send the name over to the php file.
-    //This is the jquery post method
+    //send the school id over to the php file.
     var posting = $.post("php/script.php", {
     
         myID: id
@@ -155,14 +196,13 @@ function disPlayCollege(id){
     //what will happen when the posting is done.
     posting.done(function(data){
         
-        //jQuery 
-        //$("#content1").html(data);
+
       var res = data.split("*");
       school=res[0];
       var description=res[1];
 
       //display the school information 
-      $("#content1").html("<h2>"+school+"</h2> <p>"+description+"</p>");
+      $("#content1").html("<h2  align='center'>"+school+"</h2> <p align='center'>"+description+"</p>");
       
       //send the school infromation to the database... 
       $("#mySchool").html("<input type='hidden' name='school' value='"+school+"'>");
@@ -193,22 +233,37 @@ function disPlayCollege(id){
  <style>
 
 
+/* the field bottons */
 .field{
-background-color: #4CAF50;
+background-color: #99bbff;
 color: white;
 padding: 8px 20px;
 font-size: 14px;
- border: 2px solid green; 
+ border: 2px solid #668cff; 
 cursor: pointer;
 float:left;
+border-radius: 5px;
+margin-left:8px;
+margin-top: 5px;
 }
+
+
+/* the certain bottons */
+#Engineering{
+margin-left: 150px;
+}
+
+#FinancialAidandScholarships{
+margin-left: 280px;
+}
+
 
 .buttons,.review{
 display:none;
 }
 
 .field:hover, .field:focus {
-    background-color: purple;
+    background-color: #6699ff;
 }
 
 .show {display:block;}
@@ -221,8 +276,8 @@ display:none;
 <button onclick="showReviewBox(this.id)" class="field" id="After Graduation">After Graduation</button> 
 <button onclick="showReviewBox(this.id)" class="field" id="Professional Support">Professional Support</button>
 <button onclick="showReviewBox(this.id)" class="field" id="Food">Food</button> 
-<button onclick="showReviewBox(this.id)" class="field" id="Financial Aid and Scholarships">Financial Aid and Scholarships</button>
-<button onclick="showReviewBox(this.id)" class="field" id="Campus Inclusivity">Campus Inclusivity</button>
+<button onclick="showReviewBox('Financial Aid and Scholarships')" class="field" id="FinancialAidandScholarships">Financial Aid and Scholarships</button>
+<button onclick="showReviewBox('Campus Inclusivity')" class="field" id="CampusInclusivity">Campus Inclusivity</button>
 <button onclick="showReviewBox(this.id)" class="field" id="Overall Experience">Overall Experience</button>
  </div>
 
@@ -233,9 +288,9 @@ display:none;
 <br>
 
 <script>
+
 //this method is called when a field button is clicked
 function showReviewBox(){
-
 
    document.getElementById("reviews").classList.add("show");
 
@@ -247,19 +302,13 @@ function showReviewBox(){
     $("#myField").html("<input type='hidden' name='field' value='"+fieldName+"'>");
 
         //this line displays the field that the user is doing..
-     $("#ReviewingField").html("<p>This is the field that you are reviewing: "+fieldName+"</p>");
+     $("#ReviewingField").html("<p>You are reviewing for: "+fieldName+"</p>");
 
       disPlayReviews(fieldName,window.school);
 }
 
 
-//this function displays the reviews of a certain field of a certain field
-
-
-</script>
-
-<script>
-
+//this function displays the reviews of a certain field of a certain school 
 function disPlayReviews(fieldName, schoolName){
   
 
@@ -279,20 +328,30 @@ function disPlayReviews(fieldName, schoolName){
 }
 
 </script>
-
+ 
+<!-- the reviews-->
 <div id="myReviews">
 </div>
 
-<div id="ReviewingField">
+<!-- the field that the user is reviewing for-->
+  <div id="ReviewingField">
 </div>
 
 
+ <!-- the hidden iframe-->
+<style>
+  .hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px; }
+</style>
 
 
+ <!-- the review submitting area-->
  <div class = "review", id = "reviews" >
+  
+
+  <iframe name="hiddenFrame" class="hide"></iframe>
      
     <!-- defines a form for the user to fill out and submit -->
-    <form action = "php/action_page.php" method = "post">
+    <form action = "php/action_page.php" method = "post"  target="hiddenFrame">
         Country of Origin: <br>
         <input type="text" name="country"><br>
 

@@ -2,7 +2,7 @@
 
 <?php
 
-//store country 
+//handles review submissions 
 if(isset($_POST['country']) and isset($_POST['year']) and isset($_POST['ReviewText'])and isset($_POST['field'])and isset($_POST['school'])){
 
 	storeForm($_POST['country'], $_POST['year'],$_POST['ReviewText'],$_POST['field'],$_POST['school']);
@@ -43,5 +43,11 @@ function storeForm($country, $year, $review, $field, $school){
 	//close the connection when done. 
 	$conn->close();
 }
+//returns to the welcome page when the users clicks go back
 
 ?>
+<html>
+<body>
+<a href="http://localhost/search">Click here to go back</a>
+</body>
+</html>

@@ -1,17 +1,19 @@
 <?php
 
 
-//get the data from javascript.
+//gets all the school names from the database
 if(isset($_POST['name'])){
 
 	getPageData($_POST['name']);
 }
 
+//gets the college information from the database
 if(isset($_POST['myID'])){
 
 	getCollegeData($_POST['myID']);
 }
 
+//gets the reviews of a certain school from the database 
 if(isset($_POST['field']) and isset($_POST['school'])){
 	getReviews($_POST['field'],$_POST['school']);
 }
@@ -112,15 +114,13 @@ function getReviews($fieldName, $schoolName){
 	$myReview = "";
 	$html = "";
 
-	//how can you 
 	while ($row = $query->fetch_object()){
 	
 		$myCountry= $row -> country;
 
 		$myYear= $row -> year;
 		$myReview=$row -> review;
-		$html .= '<p> Original Country: '.$myCountry.'  Year in school: '.$myYear.'</p><br>';
-		$html .='<p> Review: '.$myReview.'</p><br>';
+		$html .= '<p id="aReview"> <strong> Country: </strong>'.$myCountry.'<strong>        Year: </strong>'.$myYear.'<br><strong> Review: </strong>'.$myReview.'</p>';
 
 	}
 	
